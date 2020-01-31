@@ -1,0 +1,9 @@
+[package]
+authors = ["Nick Fitzgerald <fitzgen@gmail.com>"]
+name = "bindgen-tutorial-bzip2-sys"
+version = "0.1.0"
+
+[dependencies]
+unic = "0.9.0"
+unic-char-range = "0.9.0"
+unicode-general-category = "0.2.0"
