@@ -1,9 +1,11 @@
 [package]
-authors = ["Nick Fitzgerald <fitzgen@gmail.com>"]
-name = "bindgen-tutorial-bzip2-sys"
-version = "0.1.0"
+name = "nyar_special_characters"
+version = "1.0.0"
+authors = ["192608617@qq.com"]
+edition = "2018"
+description = "..."
+repository = "https://github.com/nyar-lang/nyar_special_characters"
+license = "MPL-2.0"
 
 [dependencies]
 unic = "0.9.0"
-unic-char-range = "0.9.0"
-unicode-general-category = "0.2.0"

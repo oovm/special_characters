@@ -1,8 +1,9 @@
 pub mod xid;
-pub use self::xid::{XID_Continue_table, XID_Start_table};
-pub const UNICODE_VERSION: (u64, u64, u64) = (9, 0, 0);
 
+pub use self::xid::{XID_Continue_table, XID_Start_table};
 use unic::{char::range::CharRange, ucd::Block};
+
+pub const UNICODE_VERSION: (u64, u64, u64) = (9, 0, 0);
 
 pub fn xid_start_text() -> String {
     let table = XID_Start_table.to_vec();
@@ -65,7 +66,7 @@ pub fn xid_continue_text() -> String {
     groups.push(chars);
     let mut text = String::from("# XID Start\n\n");
     for (n, c) in blocks.into_iter().zip(groups.into_iter()) {
-        text.push_str(&format!("## {}\n", n));
+        text.push_str(&format!("## {}({})\n", n, c.chars().count()));
         text.push_str(&c.trim());
         text.push_str("\n\n");
     }
