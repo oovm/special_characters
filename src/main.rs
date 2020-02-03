@@ -2,14 +2,8 @@ extern crate unic;
 
 pub mod lib;
 
-use std::fmt::format;
-use std::fs::File;
-use std::io::Write;
-use unic::char::range::CharRange;
-use unic::ucd::name_aliases_of;
-use unic::ucd::Block;
-use unic::ucd::NameAliasType;
-use lib::xid_start_text;
+use lib::{xid_continue_text, xid_start_text};
+use std::{fs::File, io::Write};
 
 pub fn save_text(text: String, path: &str) -> std::io::Result<()> {
     let mut file = File::create(path)?;
@@ -18,6 +12,6 @@ pub fn save_text(text: String, path: &str) -> std::io::Result<()> {
 }
 
 fn main() {
-    let s = xid_start_text();
-    save_text(s, "doc/xid_start_characters.md").unwrap();
+    save_text(xid_start_text(), "doc/xid_start_characters.md").unwrap();
+    save_text(xid_continue_text(), "doc/xid_continue_characters.md").unwrap();
 }
