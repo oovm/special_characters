@@ -1,0 +1,6 @@
+## Nyar Special Characters
+
+- ID_START: 125334
+- ID_CONTINUE: 128108
+- XID_START: 125311
+- XID_CONTINUE: 128089
