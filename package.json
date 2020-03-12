@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "gen": "cd src/ucd && bash gen.sh && cargo fmt",
+        "fmt": "cargo fmt"
+    }
+}
