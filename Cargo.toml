@@ -9,4 +9,5 @@ repository = "https://github.com/nyar-lang/nyar_special_characters"
 license = "MPL-2.0"
 
 [dependencies]
-unic = "0.9.0"
+unic = "0.9"
+itertools = "0.9"

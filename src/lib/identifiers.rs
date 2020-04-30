@@ -1,52 +1,35 @@
 use crate::ucd::{XID_CONTINUE, XID_START};
+use itertools::Itertools;
 use unic::{char::range::CharRange, ucd::Block};
 
 pub fn xid_start_text() -> String {
-    let (mut name, mut group) = ("", "Basic Latin");
-    let mut chars = String::new();
     let mut text = String::from("# XID Start\n\n");
-    let mut count = 0;
-    for (s, e) in XID_START {
-        name = Block::of(*s).unwrap().name;
-        for c in CharRange::closed(*s, *e) {
-            chars.push(c);
-            count += 1
-        }
-        chars.push('\n');
-        chars.push('\n');
-        if name != group {
-            text.push_str(&format!("## {}({})\n", group, count));
-            text.push_str(&chars);
-            text.push('\n');
-            count = 0;
-            group = name;
-            chars = String::new()
-        }
+    let blocks = XID_START
+        .iter()
+        .map(|(s, e)| (Block::of(*s).unwrap().name, CharRange::closed(*s, *e).iter().collect_vec()))
+        .into_group_map();
+    for (group, v) in blocks.iter().sorted_by_key(|(_, v)| v[0][0]) {
+        let count: usize = v.iter().map(|cr| cr.len()).sum();
+        let chars = v.iter().map(|cr| cr.iter().join("")).join("\n\n");
+        text.push_str(&format!("## {}({})\n\n", group, count));
+        text.push_str(&chars);
+        text.push_str("\n\n");
     }
     return text;
 }
 
 pub fn xid_continue_text() -> String {
-    let (mut name, mut group) = ("", "Basic Latin");
-    let mut chars = String::new();
     let mut text = String::from("# XID Continue\n\n");
-    let mut count = 0;
-    for (s, e) in XID_CONTINUE {
-        name = Block::of(*s).unwrap().name;
-        for c in CharRange::closed(*s, *e) {
-            chars.push(c);
-            count += 1
-        }
-        chars.push('\n');
-        chars.push('\n');
-        if name != group {
-            text.push_str(&format!("## {}({})\n", group, count));
-            text.push_str(&chars);
-            text.push('\n');
-            count = 0;
-            group = name;
-            chars = String::new()
-        }
+    let blocks = XID_CONTINUE
+        .iter()
+        .map(|(s, e)| (Block::of(*s).unwrap().name, CharRange::closed(*s, *e).iter().collect_vec()))
+        .into_group_map();
+    for (group, v) in blocks.iter().sorted_by_key(|(_, v)| v[0][0]) {
+        let count: usize = v.iter().map(|cr| cr.len()).sum();
+        let chars = v.iter().map(|cr| cr.iter().join("")).join("\n\n");
+        text.push_str(&format!("## {}({})\n\n", group, count));
+        text.push_str(&chars);
+        text.push_str("\n\n");
     }
     return text;
 }
