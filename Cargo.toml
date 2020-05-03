@@ -1,13 +1,14 @@
 [package]
-name = "nyar_special_characters"
+name = "special_characters"
 version = "1.0.0"
 publish = false
 authors = ["192608617@qq.com"]
 edition = "2018"
 description = "..."
-repository = "https://github.com/nyar-lang/nyar_special_characters"
+repository = "https://github.com/GalAster/special_characters"
 license = "MPL-2.0"
 
 [dependencies]
 unic = "0.9"
 itertools = "0.9"
+lazy_static = "1.4"
